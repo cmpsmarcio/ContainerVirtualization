@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: covid-data-crud
+  name: covid-data-crud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: covid-data-crud
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: covid-data-crud
+    spec:
+      containers:
+        - image: cmpsmarcio/covid-data-crud:0.0.1
+          name: covid-data-crud
+          env:
+            - name: spring.data.mongodb.host
+              value: mongo
+          imagePullPolicy: Always
+          resources: {}
+          ports:
+            - containerPort: 8080
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: covid-data-crud
+  labels:
+    run: covid-data-crud
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: 'TCP'
+  selector:
+    app: covid-data-crud
+  type: NodePort
