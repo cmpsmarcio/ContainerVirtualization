@@ -6,6 +6,10 @@ First, install [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 
 Get pull of repository to you local computer
 
+```
+git clone https://github.com/cmpsmarcio/ContainerVirtualization.git
+```
+
 After install Minikube, run command bellow in the project folder
 
 ```
